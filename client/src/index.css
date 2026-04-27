@@ -40,77 +40,51 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Game UI Custom Colors */
+  --gold-primary: oklch(0.85 0.18 85);
+  --gold-dark: oklch(0.65 0.16 75);
+  --gold-light: oklch(0.95 0.12 90);
+  --red-game: oklch(0.42 0.22 25);
+  --red-dark: oklch(0.32 0.20 25);
+  --wood-dark: oklch(0.22 0.06 45);
+  --wood-medium: oklch(0.30 0.07 45);
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.42 0.22 25);
+  --primary-foreground: oklch(0.95 0.12 90);
+  --sidebar-primary: oklch(0.42 0.22 25);
+  --sidebar-primary-foreground: oklch(0.95 0.12 90);
+  --chart-1: oklch(0.85 0.18 85);
+  --chart-2: oklch(0.65 0.16 75);
+  --chart-3: oklch(0.42 0.22 25);
+  --chart-4: oklch(0.32 0.20 25);
+  --chart-5: oklch(0.22 0.06 45);
+  --radius: 0.5rem;
+  --background: oklch(0.22 0.06 45);
+  --foreground: oklch(0.95 0.12 90);
+  --card: oklch(0.28 0.07 45);
+  --card-foreground: oklch(0.95 0.12 90);
+  --popover: oklch(0.28 0.07 45);
+  --popover-foreground: oklch(0.95 0.12 90);
+  --secondary: oklch(0.32 0.08 45);
+  --secondary-foreground: oklch(0.90 0.10 85);
+  --muted: oklch(0.30 0.06 45);
+  --muted-foreground: oklch(0.70 0.08 75);
+  --accent: oklch(0.85 0.18 85);
+  --accent-foreground: oklch(0.22 0.06 45);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
-}
-
-.dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  --border: oklch(0.85 0.18 85 / 30%);
+  --input: oklch(0.85 0.18 85 / 20%);
+  --ring: oklch(0.85 0.18 85);
+  --sidebar: oklch(0.28 0.07 45);
+  --sidebar-foreground: oklch(0.95 0.12 90);
+  --sidebar-accent: oklch(0.32 0.08 45);
+  --sidebar-accent-foreground: oklch(0.95 0.12 90);
+  --sidebar-border: oklch(0.85 0.18 85 / 20%);
+  --sidebar-ring: oklch(0.85 0.18 85);
 }
 
 @layer base {
@@ -119,6 +93,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "PingFang SC", "Microsoft YaHei", "微软雅黑", system-ui, sans-serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -134,24 +109,11 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -162,16 +124,378 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
+}
+
+/* ===== GAME UI CUSTOM ANIMATIONS ===== */
+
+/* 呼吸发光动效 - 五一金矿入口图标 */
+@keyframes breathingGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 16px #FF8C00);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 20px #FFD700) drop-shadow(0 0 40px #FF8C00) drop-shadow(0 0 60px #FF4500);
+    opacity: 1;
+  }
+}
+
+/* 手指点击引导动效 */
+@keyframes fingerTap {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(4px) scale(0.92); }
+  60% { transform: translateY(-2px) scale(1.05); }
+}
+
+/* 金铲子飞出动效 */
+@keyframes shovelFly1 {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(-80px, -120px) rotate(-30deg) scale(1.2); opacity: 0; }
+}
+@keyframes shovelFly2 {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(0px, -150px) rotate(10deg) scale(1.3); opacity: 0; }
+}
+@keyframes shovelFly3 {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(80px, -120px) rotate(35deg) scale(1.2); opacity: 0; }
+}
+
+/* 数字跳动动效 */
+@keyframes numberPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.4); opacity: 1; }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 金光粒子 */
+@keyframes sparkle {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx, 30px), var(--ty, -60px)) scale(0); opacity: 0; }
+}
+
+/* 弹窗进入动效 */
+@keyframes modalSlideIn {
+  0% { transform: scale(0.85) translateY(30px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Toast 滑入 */
+@keyframes toastSlideUp {
+  0% { transform: translateY(60px) translateX(-50%); opacity: 0; }
+  20% { transform: translateY(-8px) translateX(-50%); opacity: 1; }
+  80% { transform: translateY(0) translateX(-50%); opacity: 1; }
+  100% { transform: translateY(0) translateX(-50%); opacity: 1; }
+}
+
+/* 红点脉冲 */
+@keyframes redDotPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 50, 50, 0.7); }
+  50% { transform: scale(1.2); box-shadow: 0 0 0 6px rgba(255, 50, 50, 0); }
+}
+
+/* 胜利星光 */
+@keyframes victoryStarBurst {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+/* 金色光晕扫过 */
+@keyframes goldSweep {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* 按钮高亮脉冲 */
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 12px 2px #FFD700, 0 0 24px 4px #FF8C00; }
+  50% { box-shadow: 0 0 24px 6px #FFD700, 0 0 48px 10px #FF8C00; }
+}
+
+/* 场次卡片进入 */
+@keyframes cardSlideIn {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* 兑换成功爆炸 */
+@keyframes exchangeSuccess {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.08); }
+  60% { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+/* 金铲子归零动效 */
+@keyframes countDown {
+  0% { transform: scale(1.5); color: #FFD700; }
+  100% { transform: scale(1); color: #FF6B6B; }
+}
+
+/* 进度条填充 */
+@keyframes progressFill {
+  0% { width: 0%; }
+  100% { width: var(--target-width, 3%); }
+}
+
+/* 悬浮图标上下漂浮 */
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* 矿工帽子摇晃 */
+@keyframes helmetWobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+/* 金币旋转 */
+@keyframes coinSpin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* 应用动效类 */
+.animate-breathing-glow {
+  animation: breathingGlow 2s ease-in-out infinite;
+}
+
+.animate-finger-tap {
+  animation: fingerTap 1.2s ease-in-out infinite;
+}
+
+.animate-red-dot-pulse {
+  animation: redDotPulse 1.5s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+.animate-modal-in {
+  animation: modalSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-number-pop {
+  animation: numberPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-btn-pulse {
+  animation: btnPulse 1.5s ease-in-out infinite;
+}
+
+.animate-gold-sweep {
+  background: linear-gradient(90deg, #8B6914 0%, #FFD700 40%, #FFF8DC 50%, #FFD700 60%, #8B6914 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldSweep 3s linear infinite;
+}
+
+.animate-victory-star {
+  animation: victoryStarBurst 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 游戏UI通用样式 */
+.game-panel {
+  background: linear-gradient(180deg, #3D1A0A 0%, #2A1008 50%, #1A0A05 100%);
+  border: 2px solid #8B6914;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(139, 105, 20, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.2);
+}
+
+.game-title-text {
+  background: linear-gradient(180deg, #FFF8DC 0%, #FFD700 40%, #FF8C00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+}
+
+.game-btn-primary {
+  background: linear-gradient(180deg, #FF6B35 0%, #CC2200 50%, #991A00 100%);
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  color: #FFF8DC;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  box-shadow: 0 4px 12px rgba(204, 34, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.15s ease;
+}
+
+.game-btn-primary:hover {
+  background: linear-gradient(180deg, #FF8C55 0%, #EE3300 50%, #BB2200 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(204, 34, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.game-btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(204, 34, 0, 0.4);
+}
+
+.game-btn-gold {
+  background: linear-gradient(180deg, #FFE566 0%, #FFD700 40%, #CC9900 100%);
+  border: 2px solid #8B6914;
+  border-radius: 8px;
+  color: #3D1A0A;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(255, 165, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.15s ease;
+}
+
+.game-btn-gold:hover {
+  background: linear-gradient(180deg, #FFF088 0%, #FFE033 40%, #DDAA00 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 165, 0, 0.6);
+}
+
+.game-btn-disabled {
+  background: linear-gradient(180deg, #555 0%, #333 100%);
+  border: 2px solid #666;
+  border-radius: 8px;
+  color: #888;
+  font-weight: 700;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.gold-border {
+  border: 2px solid #8B6914;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3), inset 0 0 8px rgba(255, 215, 0, 0.1);
+}
+
+.gold-border-bright {
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.6), inset 0 0 8px rgba(255, 215, 0, 0.2);
+}
+
+/* 进度条样式 */
+.progress-bar-game {
+  background: linear-gradient(90deg, #FFD700 0%, #FF8C00 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+  animation: progressFill 1s ease-out forwards;
+}
+
+/* 奖励卡片 */
+.reward-card {
+  background: linear-gradient(180deg, rgba(61, 26, 10, 0.9) 0%, rgba(26, 10, 5, 0.95) 100%);
+  border: 1px solid rgba(139, 105, 20, 0.6);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.reward-card:hover {
+  border-color: rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+/* 场次选择卡片 */
+.room-card {
+  background: linear-gradient(135deg, rgba(61, 26, 10, 0.95) 0%, rgba(42, 16, 8, 0.98) 100%);
+  border: 2px solid rgba(139, 105, 20, 0.7);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.room-card:hover {
+  border-color: #FFD700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.room-card.featured {
+  border-color: #FF8C00;
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+}
+
+/* 胜利弹窗 */
+.victory-panel {
+  background: radial-gradient(ellipse at top, #4A1A00 0%, #2A0D00 50%, #1A0800 100%);
+  border: 3px solid #FFD700;
+  border-radius: 16px;
+  box-shadow: 0 0 60px rgba(255, 215, 0, 0.4), 0 0 120px rgba(255, 140, 0, 0.2);
+}
+
+/* 步骤指示器 */
+.step-indicator {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: rgba(255, 215, 0, 0.8);
+}
+
+/* 遮罩层 */
+.game-overlay {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
+}
+
+/* 金铲子图标 */
+.shovel-icon {
+  display: inline-block;
+  font-size: 1.2em;
+  filter: drop-shadow(0 0 4px #FFD700);
+}
+
+/* 新手专享标签 */
+.newbie-badge {
+  background: linear-gradient(90deg, #FF4500 0%, #FF6B35 100%);
+  border: 1px solid #FFD700;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #FFF8DC;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* 牌局过渡页 - 牌桌样式 */
+.card-table {
+  background: radial-gradient(ellipse, #2D7A00 0%, #1A4A00 60%, #0D2800 100%);
+}
+
+/* 活动商店 - 兑换成功状态 */
+.exchange-success-glow {
+  animation: exchangeSuccess 0.5s ease-out forwards;
+  box-shadow: 0 0 30px rgba(74, 222, 128, 0.5);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.4);
+  border-radius: 2px;
 }
