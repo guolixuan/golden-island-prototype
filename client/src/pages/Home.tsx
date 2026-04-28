@@ -177,8 +177,7 @@ function PrizeCard({ icon, name, sub, cost, shovelCount, canExchange, isExchange
       boxShadow: canClick
         ? "0 0 16px rgba(255,200,0,0.5), inset 0 1px 0 rgba(255,255,255,0.8), 2px 4px 8px rgba(0,0,0,0.4)"
         : "inset 0 1px 0 rgba(255,255,255,0.8), 2px 4px 8px rgba(0,0,0,0.4)",
-      minHeight: tall ? "200px" : "160px",
-      flex: 1,
+      flex: "0 0 auto",
       transition: "all 0.3s ease",
       overflow: "hidden",
     }}>
@@ -246,7 +245,7 @@ function PrizeCard({ icon, name, sub, cost, shovelCount, canExchange, isExchange
         fontWeight: 700,
         marginBottom: "8px",
         whiteSpace: "nowrap",
-      }}>需求：{cost}铲子</div>
+      }}>需求：{cost}矿子</div>
 
       {/* 兑换按钮 */}
       <button
@@ -296,10 +295,15 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
 
   return (
     <div style={{
-      position: "absolute", inset: 0,
+      position: "relative",
+      width: "fit-content", minWidth: "600px", height: "auto",
       background: "radial-gradient(ellipse at 50% 0%, #6B1A00 0%, #3D0D00 40%, #1A0500 100%)",
       display: "flex", flexDirection: "column",
       fontFamily: '"PingFang SC", "Microsoft YaHei", system-ui, sans-serif',
+      borderRadius: "14px",
+      border: "2px solid rgba(255,215,0,0.5)",
+      boxShadow: "0 8px 48px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,165,0,0.15)",
+      overflow: "hidden",
     }}>
       {/* 顶部金色装饰线 */}
       <div style={{
@@ -359,16 +363,6 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
           <span style={{ fontSize: "10px" }}>规则</span>
         </button>
 
-        {/* VIP 激活状态条（仅演示，新手不显示） */}
-        {shovelCount > 0 && (
-          <div style={{
-            position: "absolute", right: "64px", top: "8px",
-            background: "linear-gradient(90deg, #8B4500 0%, #CC6600 100%)",
-            border: "1px solid #FFD700", borderRadius: "12px",
-            padding: "3px 10px", fontSize: "11px", color: "#FFE566", fontWeight: 700,
-            whiteSpace: "nowrap",
-          }}>👑 已激活18元超级矿工卡</div>
-        )}
       </div>
 
       {/* ===== 资产栏 ===== */}
@@ -399,7 +393,7 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
         {/* 今日进度 */}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: "11px", color: "#CCA050", marginBottom: "5px", fontWeight: 600 }}>
-            今日掉落进度：{shovelCount} / 100 把
+            每日进度 {shovelCount}
           </div>
           <div style={{
             height: "12px", background: "rgba(0,0,0,0.5)",
@@ -415,13 +409,18 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
               boxShadow: progressPct > 0 ? "0 0 8px rgba(255,215,0,0.7)" : "none",
               transition: "width 0.8s ease",
             }} />
-            {/* 进度条刻度 */}
-            {[25, 50, 75].map(p => (
+            {[20, 40, 60, 80].map(p => (
               <div key={p} style={{
                 position: "absolute", top: 0, bottom: 0,
                 left: `${p}%`, width: "1px",
-                background: "rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.15)",
               }} />
+            ))}
+          </div>
+          {/* 里程碑标签 */}
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "3px" }}>
+            {["0矿", "50矿", "100矿", "200矿", "1400矿"].map(label => (
+              <span key={label} style={{ fontSize: "9px", color: "#CCA050" }}>{label}</span>
             ))}
           </div>
         </div>
@@ -450,17 +449,15 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
 
       {/* ===== 奖品区域（两列）===== */}
       <div style={{
-        flex: 1, margin: "0 12px", display: "flex", gap: "10px",
-        minHeight: 0, overflow: "hidden",
+        margin: "0 12px 10px", display: "flex", gap: "10px",
       }}>
         {/* ---- 左半区：限量大奖 ---- */}
         <div style={{
-          flex: 1, display: "flex", flexDirection: "column",
+          display: "flex", flexDirection: "column",
           background: "rgba(0,0,0,0.25)",
           border: "1px solid rgba(139,105,20,0.5)",
           borderRadius: "10px",
           padding: "8px 10px",
-          overflow: "hidden",
         }}>
           {/* 区域标题 */}
           <div style={{
@@ -469,12 +466,12 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
             textShadow: "0 1px 4px rgba(0,0,0,0.8)",
           }}>
             <span>💎</span>
-            <span>【限量大奖】</span>
+            <span>【限量金铲子】</span>
             <span style={{ fontSize: "11px", color: "#CCA050", fontWeight: 600 }}>（先到先得）</span>
           </div>
 
           {/* 两张竖向奖品卡片 */}
-          <div style={{ display: "flex", gap: "8px", flex: 1 }}>
+          <div style={{ display: "flex", gap: "8px" }}>
             <PrizeCard
               icon={<div style={{
                 width: "64px", height: "44px",
@@ -485,7 +482,7 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
                 boxShadow: "inset 0 1px 0 rgba(255,255,255,0.3)",
               }}>50元</div>}
               name="50元话费卡"
-              sub="全服限量：100份 / 剩21份"
+              sub="全服限量：100份 / 利20万"
               cost={500}
               shovelCount={shovelCount}
               canExchange={false}
@@ -505,7 +502,7 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
                 boxShadow: "0 0 12px rgba(255,215,0,0.5)",
               }}>🖼️</div>}
               name={`"五一劳模"绝版头像框`}
-              sub="永久 · 全服限定"
+              sub="全服限量：0/1"
               cost={800}
               shovelCount={shovelCount}
               canExchange={false}
@@ -519,12 +516,11 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
 
         {/* ---- 右半区：实用道具 ---- */}
         <div style={{
-          flex: 1.3, display: "flex", flexDirection: "column",
+          display: "flex", flexDirection: "column",
           background: "rgba(0,0,0,0.25)",
           border: "1px solid rgba(139,105,20,0.5)",
           borderRadius: "10px",
           padding: "8px 10px",
-          overflow: "hidden",
         }}>
           {/* 区域标题 */}
           <div style={{
@@ -532,13 +528,13 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
             marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px",
             textShadow: "0 1px 4px rgba(0,0,0,0.8)",
           }}>
-            <span>⛏️</span>
+            <span>🎁</span>
             <span>【实用道具】</span>
             <span style={{ fontSize: "11px", color: "#CCA050", fontWeight: 600 }}>（每日刷新）</span>
           </div>
 
           {/* 三张小型奖品卡片 */}
-          <div style={{ display: "flex", gap: "8px", flex: 1 }}>
+          <div style={{ display: "flex", gap: "8px" }}>
             {/* 记牌器 */}
             <PrizeCard
               icon={<div style={{
@@ -553,10 +549,10 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
               }}>记牌<br/>器</div>}
               name="记牌器(1天)"
               sub=""
-              cost={50}
+              cost={10}
               shovelCount={shovelCount}
               canExchange={false}
-              limitText="今日限购：0/2"
+              limitText="剩余：0/1"
               onExchange={onExchange}
             />
             {/* 初级场门票 */}
@@ -573,10 +569,10 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
               }}>初级场<br/>门票</div>}
               name="初级场门票"
               sub=""
-              cost={30}
+              cost={80}
               shovelCount={shovelCount}
               canExchange={false}
-              limitText="今日限购：0/5"
+              limitText="今日限量：0/1"
               onExchange={onExchange}
             />
             {/* 破产救济卡 */}
@@ -595,7 +591,7 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
               cost={80}
               shovelCount={shovelCount}
               canExchange={false}
-              limitText="今日限购：0/1"
+              limitText="今日限量：0/1"
               onExchange={onExchange}
             />
           </div>
@@ -624,44 +620,6 @@ function ActivityPanel({ shovelCount, exchanged, onBack, onGoPlay, onExchange, s
           <span style={{ fontSize: "16px", flexShrink: 0 }}>📢</span>
         </div>
 
-        {/* VIP 浮层卡片 */}
-        <div style={{
-          background: "linear-gradient(135deg, #3D1A00 0%, #6B3A00 50%, #3D1A00 100%)",
-          border: "2px solid #FFD700",
-          borderRadius: "10px",
-          padding: "8px 14px",
-          display: "flex", alignItems: "center", gap: "10px",
-          boxShadow: "0 0 20px rgba(255,165,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
-          position: "relative", overflow: "hidden",
-          flexShrink: 0,
-        }}>
-          {/* VIP 皇冠角标 */}
-          <div style={{
-            position: "absolute", top: "-2px", right: "-2px",
-            background: "linear-gradient(135deg, #FFD700 0%, #FF8C00 100%)",
-            borderRadius: "0 8px 0 10px",
-            padding: "3px 8px",
-            fontSize: "11px", fontWeight: 800, color: "#3D1A0A",
-          }}>VIP</div>
-
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: "12px", color: "#FFE566", fontWeight: 700, lineHeight: 1.5 }}>
-              🔥 花<span style={{ color: "#FF4500", fontSize: "14px" }}>18元</span>开通【超级矿工卡】，
-            </div>
-            <div style={{ fontSize: "11px", color: "#CCA050", lineHeight: 1.5 }}>
-              金铲子掉落翻倍，每日上限提升至400！
-            </div>
-          </div>
-          <button style={{
-            background: "linear-gradient(180deg, #FFE566 0%, #FFD700 40%, #CC9900 100%)",
-            border: "1px solid #8B6914",
-            borderRadius: "6px",
-            color: "#3D1A0A", fontSize: "12px", fontWeight: 800,
-            padding: "7px 12px", whiteSpace: "nowrap",
-            boxShadow: "0 2px 8px rgba(255,165,0,0.4)",
-            flexShrink: 0,
-          }}>【立即开通】</button>
-        </div>
       </div>
 
       {/* 底部金色装饰线 */}
@@ -735,10 +693,15 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
 
   return (
     <div style={{
-      position: "absolute", inset: 0,
+      position: "relative",
+      width: "fit-content", minWidth: "600px", height: "auto",
       background: "radial-gradient(ellipse at 50% 0%, #6B1A00 0%, #3D0D00 40%, #1A0500 100%)",
       display: "flex", flexDirection: "column",
       fontFamily: '"PingFang SC", "Microsoft YaHei", system-ui, sans-serif',
+      borderRadius: "14px",
+      border: "2px solid rgba(255,215,0,0.5)",
+      boxShadow: "0 8px 48px rgba(0,0,0,0.85)",
+      overflow: "hidden",
     }}>
       {/* 顶部金色装饰线 */}
       <div style={{ height: "3px", background: "linear-gradient(90deg, transparent 0%, #8B6914 20%, #FFD700 50%, #8B6914 80%, transparent 100%)" }} />
@@ -813,12 +776,12 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
 
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: "11px", color: "#CCA050", marginBottom: "5px", fontWeight: 600 }}>
-            今日掉落进度：{exchanged ? 0 : shovelCount} / 100 把
+            每日进度 {exchanged ? 0 : shovelCount}
           </div>
           <div style={{
             height: "12px", background: "rgba(0,0,0,0.5)",
             borderRadius: "6px", border: "1px solid rgba(139,105,20,0.4)",
-            overflow: "hidden",
+            overflow: "hidden", position: "relative",
           }}>
             <div style={{
               height: "100%",
@@ -828,6 +791,11 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
               boxShadow: "0 0 8px rgba(255,215,0,0.7)",
               transition: "width 0.8s ease",
             }} />
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "3px" }}>
+            {["0矿", "50矿", "100矿", "200矿", "1400矿"].map(label => (
+              <span key={label} style={{ fontSize: "9px", color: "#CCA050" }}>{label}</span>
+            ))}
           </div>
         </div>
 
@@ -845,18 +813,18 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
       </div>
 
       {/* ===== 奖品区域 ===== */}
-      <div style={{ flex: 1, margin: "0 12px", display: "flex", gap: "10px", minHeight: 0, overflow: "hidden" }}>
-        {/* 左半区：限量大奖 */}
+      <div style={{ margin: "0 12px 10px", display: "flex", gap: "10px" }}>
+        {/* 左半区：限量金铲子 */}
         <div style={{
-          flex: 1, display: "flex", flexDirection: "column",
+          display: "flex", flexDirection: "column",
           background: "rgba(0,0,0,0.25)", border: "1px solid rgba(139,105,20,0.5)",
-          borderRadius: "10px", padding: "8px 10px", overflow: "hidden",
+          borderRadius: "10px", padding: "8px 10px",
         }}>
           <div style={{ fontSize: "13px", fontWeight: 800, color: "#FFD700", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
-            <span>💎</span><span>【限量大奖】</span>
+            <span>💎</span><span>【限量金铲子】</span>
             <span style={{ fontSize: "11px", color: "#CCA050", fontWeight: 600 }}>（先到先得）</span>
           </div>
-          <div style={{ display: "flex", gap: "8px", flex: 1 }}>
+          <div style={{ display: "flex", gap: "8px" }}>
             <PrizeCard
               icon={<div style={{
                 width: "64px", height: "44px",
@@ -866,7 +834,7 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
                 textShadow: "0 2px 4px rgba(0,0,0,0.6)",
               }}>50元</div>}
               name="50元话费卡"
-              sub="全服限量：100份 / 剩21份"
+              sub="全服限量：100份 / 利20万"
               cost={500}
               shovelCount={exchanged ? 0 : shovelCount}
               canExchange={false}
@@ -884,7 +852,7 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
                 fontSize: "28px", boxShadow: "0 0 12px rgba(255,215,0,0.5)",
               }}>🖼️</div>}
               name={`"五一劳模"绝版头像框`}
-              sub="永久 · 全服限定"
+              sub="全服限量：0/1"
               cost={800}
               shovelCount={exchanged ? 0 : shovelCount}
               canExchange={false}
@@ -896,17 +864,17 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
           </div>
         </div>
 
-        {/* 右半区：实用道具 + 新手专享 */}
+        {/* 右半区：初级场铲子 + 新手专享 */}
         <div style={{
-          flex: 1.3, display: "flex", flexDirection: "column",
+          display: "flex", flexDirection: "column",
           background: "rgba(0,0,0,0.25)", border: "1px solid rgba(139,105,20,0.5)",
-          borderRadius: "10px", padding: "8px 10px", overflow: "hidden",
+          borderRadius: "10px", padding: "8px 10px",
         }}>
           <div style={{ fontSize: "13px", fontWeight: 800, color: "#FFD700", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
-            <span>⛏️</span><span>【实用道具】</span>
+            <span>🎁</span><span>【实用道具】</span>
             <span style={{ fontSize: "11px", color: "#CCA050", fontWeight: 600 }}>（每日刷新）</span>
           </div>
-          <div style={{ display: "flex", gap: "8px", flex: 1 }}>
+          <div style={{ display: "flex", gap: "8px" }}>
             {/* 新手专享礼包 - 高亮可兑换 */}
             <div style={{
               flex: 1, display: "flex", flexDirection: "column",
@@ -994,7 +962,7 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
               cost={50}
               shovelCount={exchanged ? 0 : shovelCount}
               canExchange={false}
-              limitText="今日限购：0/2"
+              limitText="剩余：0/1"
               onExchange={onExchange}
             />
             {/* 破产救济卡 */}
@@ -1012,7 +980,7 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
               cost={80}
               shovelCount={exchanged ? 0 : shovelCount}
               canExchange={false}
-              limitText="今日限购：0/1"
+              limitText="今日限量：0/1"
               onExchange={onExchange}
             />
           </div>
@@ -1032,35 +1000,6 @@ function ActivityShop({ shovelCount, exchanged, onBack, onGoPlay, onExchange, on
           <span style={{ fontSize: "16px", flexShrink: 0 }}>📢</span>
         </div>
 
-        <div style={{
-          background: "linear-gradient(135deg, #3D1A00 0%, #6B3A00 50%, #3D1A00 100%)",
-          border: "2px solid #FFD700", borderRadius: "10px",
-          padding: "8px 14px", display: "flex", alignItems: "center", gap: "10px",
-          boxShadow: "0 0 20px rgba(255,165,0,0.3)",
-          position: "relative", overflow: "hidden", flexShrink: 0,
-        }}>
-          <div style={{
-            position: "absolute", top: "-2px", right: "-2px",
-            background: "linear-gradient(135deg, #FFD700 0%, #FF8C00 100%)",
-            borderRadius: "0 8px 0 10px", padding: "3px 8px",
-            fontSize: "11px", fontWeight: 800, color: "#3D1A0A",
-          }}>VIP</div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: "12px", color: "#FFE566", fontWeight: 700, lineHeight: 1.5 }}>
-              🔥 花<span style={{ color: "#FF4500", fontSize: "14px" }}>18元</span>开通【超级矿工卡】，
-            </div>
-            <div style={{ fontSize: "11px", color: "#CCA050", lineHeight: 1.5 }}>
-              金铲子掉落翻倍，每日上限提升至400！
-            </div>
-          </div>
-          <button style={{
-            background: "linear-gradient(180deg, #FFE566 0%, #FFD700 40%, #CC9900 100%)",
-            border: "1px solid #8B6914", borderRadius: "6px",
-            color: "#3D1A0A", fontSize: "12px", fontWeight: 800,
-            padding: "7px 12px", whiteSpace: "nowrap",
-            boxShadow: "0 2px 8px rgba(255,165,0,0.4)", flexShrink: 0,
-          }}>【立即开通】</button>
-        </div>
       </div>
 
       <div style={{ height: "3px", background: "linear-gradient(90deg, transparent 0%, #8B6914 20%, #FFD700 50%, #8B6914 80%, transparent 100%)" }} />
@@ -1176,27 +1115,21 @@ export default function Home() {
   const renderLobby = (showGameHighlight = false) => (
     <div className="relative w-full h-full overflow-hidden" style={{ background: "#1A0A05" }}>
       <img
-        src="/manus-storage/lobby-bg_ddb0d8a4.webp"
+        src="/lobby-bg.png"
         alt="黄金岛游戏大厅"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-contain"
         style={{ objectPosition: "center" }}
       />
 
       {/* 五一金矿专属入口图标 */}
-      <div className="absolute" style={{ right: "8px", top: "340px", zIndex: 30 }}>
+      <div className="absolute" style={{ right: "180px", top: "180px", zIndex: 30 }}>
         <div className="relative cursor-pointer" onClick={() => setStep("activity_panel")}>
-          <div className="animate-breathing-glow" style={{
-            width: "72px", height: "72px", borderRadius: "12px",
-            background: "linear-gradient(135deg, #8B0000 0%, #CC2200 50%, #FF4500 100%)",
-            border: "2px solid #FFD700",
-            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-            position: "relative", boxShadow: "0 0 20px rgba(255,215,0,0.6)",
-          }}>
-            <div style={{ fontSize: "28px", lineHeight: 1 }}>⛏️</div>
-            <div style={{ fontSize: "10px", fontWeight: 800, color: "#FFD700", textShadow: "0 1px 2px rgba(0,0,0,0.8)", marginTop: "2px", letterSpacing: "0.5px" }}>
-              五一金矿
-            </div>
-          </div>
+          <img
+            src="/gold-mine-icon.png"
+            alt="五一挖金矿"
+            className="animate-breathing-glow"
+            style={{ width: "90px", height: "90px", objectFit: "contain", display: "block" }}
+          />
           {/* 小红点 */}
           <div className="absolute animate-red-dot-pulse" style={{
             top: "-4px", right: "-4px", width: "16px", height: "16px",
@@ -1255,11 +1188,10 @@ export default function Home() {
   // ---- Step 2b: 矿工推荐模态框 ----
   const renderMinerRecommend = () => (
     <div className="relative w-full h-full overflow-hidden">
-      <img src="/manus-storage/lobby-bg_ddb0d8a4.webp" alt="背景" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 game-overlay" />
-      <div className="absolute game-panel animate-modal-in" style={{
-        left: "50%", top: "50%", transform: "translate(-50%, -50%)",
-        width: "88%", maxWidth: "360px", zIndex: 60, padding: "0", overflow: "hidden",
+      <img src="/lobby-bg.png" alt="背景" className="absolute inset-0 w-full h-full object-contain" style={{ objectPosition: "center" }} />
+      <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 60 }}>
+      <div className="game-panel animate-modal-in" style={{
+        width: "88%", maxWidth: "420px", padding: "0", overflow: "hidden",
       }}>
         <div style={{
           background: "linear-gradient(180deg, #6B3A00 0%, #3D1A00 100%)",
@@ -1325,6 +1257,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      </div>
       <StepIndicator step="miner_recommend" />
     </div>
   );
@@ -1332,11 +1265,10 @@ export default function Home() {
   // ---- Step 3b: 场次选择 ----
   const renderRoomSelect = () => (
     <div className="relative w-full h-full overflow-hidden">
-      <img src="/manus-storage/lobby-bg_ddb0d8a4.webp" alt="背景" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 game-overlay" />
-      <div className="absolute game-panel animate-modal-in" style={{
-        left: "50%", top: "50%", transform: "translate(-50%, -50%)",
-        width: "92%", maxWidth: "400px", zIndex: 50, padding: "0", overflow: "hidden",
+      <img src="/lobby-bg.png" alt="背景" className="absolute inset-0 w-full h-full object-contain" style={{ objectPosition: "center" }} />
+      <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 50 }}>
+      <div className="game-panel animate-modal-in" style={{
+        width: "92%", maxWidth: "400px", padding: "0", overflow: "hidden",
       }}>
         <div style={{
           background: "linear-gradient(180deg, #8B0000 0%, #5A0000 100%)",
@@ -1404,15 +1336,16 @@ export default function Home() {
           </div>
         </div>
       </div>
+      </div>
       <StepIndicator step="room_select" />
     </div>
   );
 
   // ---- 打牌中 ----
   const renderPlaying = () => (
-    <div className="relative w-full h-full flex flex-col items-center justify-center" style={{
-      background: "radial-gradient(ellipse at center, #1A4A00 0%, #0D2800 50%, #061400 100%)",
-    }}>
+    <div className="relative w-full h-full overflow-hidden">
+      <img src="/lobby-bg.png" alt="背景" className="absolute inset-0 w-full h-full object-contain" style={{ objectPosition: "center" }} />
+      <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ background: "rgba(0,0,0,0.6)" }}>
       <div style={{
         width: "280px", height: "180px", borderRadius: "90px",
         background: "radial-gradient(ellipse, #2D7A00 0%, #1A4A00 60%, #0D2800 100%)",
@@ -1439,6 +1372,7 @@ export default function Home() {
         onClick={() => { setShovelCount(3); setStep("victory"); }}>
         🏆 结束牌局（模拟胜利）
       </button>
+      </div>
       <StepIndicator step="playing" />
     </div>
   );
@@ -1464,9 +1398,9 @@ export default function Home() {
         } as React.CSSProperties} />
       ))}
 
-      <div className="absolute victory-panel animate-modal-in" style={{
-        left: "50%", top: "50%", transform: "translate(-50%, -50%)",
-        width: "92%", maxWidth: "380px", zIndex: 50, padding: "0", overflow: "hidden",
+      <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 50 }}>
+      <div className="victory-panel animate-modal-in" style={{
+        width: "92%", maxWidth: "380px", padding: "0", overflow: "hidden",
       }}>
         <div style={{
           padding: "20px", textAlign: "center",
@@ -1550,6 +1484,7 @@ export default function Home() {
             onClick={() => setStep("activity_shop")}>立即去兑换 →</button>
         </div>
       </div>
+      </div>
 
       <StepIndicator step="victory" />
     </div>
@@ -1565,16 +1500,28 @@ export default function Home() {
       <div style={{ width: "100%", height: "100%" }}>
         {step === "lobby" && renderLobby(false)}
         {step === "activity_panel" && (
-          <ActivityPanel
-            shovelCount={shovelCount}
-            exchanged={exchanged}
-            onBack={() => setStep("lobby")}
-            onGoPlay={() => setStep("miner_recommend")}
-            onExchange={() => { }}
-            showRules={showRules}
-            onShowRules={() => setShowRules(true)}
-            onHideRules={() => setShowRules(false)}
-          />
+          <>
+            {renderLobby(false)}
+            <div style={{
+              position: "absolute", inset: 0, zIndex: 40,
+              background: "rgba(5,2,0,0.62)",
+              backdropFilter: "blur(1px)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              padding: "10px 14px",
+              boxSizing: "border-box",
+            }}>
+              <ActivityPanel
+                shovelCount={shovelCount}
+                exchanged={exchanged}
+                onBack={() => setStep("lobby")}
+                onGoPlay={() => setStep("miner_recommend")}
+                onExchange={() => { }}
+                showRules={showRules}
+                onShowRules={() => setShowRules(true)}
+                onHideRules={() => setShowRules(false)}
+              />
+            </div>
+          </>
         )}
         {step === "miner_recommend" && renderMinerRecommend()}
         {step === "lobby_game" && renderLobby(true)}
@@ -1582,25 +1529,36 @@ export default function Home() {
         {step === "playing" && renderPlaying()}
         {step === "victory" && renderVictory()}
         {step === "activity_shop" && (
-          <ActivityShop
-            shovelCount={shovelCount}
-            exchanged={exchanged}
-            onBack={() => setStep("lobby")}
-            onGoPlay={() => setStep("room_select")}
-            onExchange={() => {
-              setExchanged(true);
-              setShovelCount(0);
-              triggerToast("✅ 兑换成功！5万悟性已到账");
-            }}
-            onReturnLobby={() => {
-              setShovelCount(0);
-              setExchanged(false);
-              setStep("lobby");
-            }}
-            showRules={showRules}
-            onShowRules={() => setShowRules(true)}
-            onHideRules={() => setShowRules(false)}
-          />
+          <>
+            {renderLobby(false)}
+            <div style={{
+              position: "absolute", inset: 0, zIndex: 40,
+              background: "rgba(5,2,0,0.62)",
+              backdropFilter: "blur(1px)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              padding: "10px 14px", boxSizing: "border-box",
+            }}>
+              <ActivityShop
+                shovelCount={shovelCount}
+                exchanged={exchanged}
+                onBack={() => setStep("lobby")}
+                onGoPlay={() => setStep("room_select")}
+                onExchange={() => {
+                  setExchanged(true);
+                  setShovelCount(0);
+                  triggerToast("✅ 兑换成功！5万悟性已到账");
+                }}
+                onReturnLobby={() => {
+                  setShovelCount(0);
+                  setExchanged(false);
+                  setStep("lobby");
+                }}
+                showRules={showRules}
+                onShowRules={() => setShowRules(true)}
+                onHideRules={() => setShowRules(false)}
+              />
+            </div>
+          </>
         )}
       </div>
 
